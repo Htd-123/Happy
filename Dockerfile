@@ -4,7 +4,7 @@ FROM nginx:alpine
 # Xóa folder html mặc định
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy toàn bộ nội dung của project vào thư mục html của nginx
+# Copy toàn bộ nội dung project vào html của nginx
 COPY . /usr/share/nginx/html/
 
 # Expose cổng 80
