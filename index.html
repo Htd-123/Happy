@@ -5,17 +5,18 @@
     <title>Happy 3rd Anniversary</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background: #fce4ec;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            flex-direction: column;
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #583766, #3d777c, #fef4e4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+        overflow: hidden; /* Để trái tim không tràn ra ngoài */
         }
 
-        #video-section, #card-section {
+        #video-section, #card-section, #openLetterBtn {
             text-align: center;
         }
 
@@ -26,10 +27,18 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.3);
             padding: 40px;
             max-width: 500px;
+            animation: fadeIn 1s ease-in-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
         }
 
         #card-section h1 {
-            color: #ff1493;
+            color: #9ac7e5;
             margin-bottom: 20px;
         }
 
@@ -55,19 +64,66 @@
             font-size: 18px;
             border: none;
             border-radius: 10px;
-            background-color: #ff69b4;
+            background-color: #0fcce1;
             color: white;
             cursor: pointer;
             margin-top: 20px;
+            transition: background 0.3s;
+            z-index: 2;
+            position: relative;
         }
 
         button:hover {
-            background-color: #ff1493;
+            background-color: #2e899e;
         }
 
         video {
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            max-width: 100%;
+        }
+
+        #openLetterBtn {
+            display: none;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Trái tim */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ddf100;
+            transform: rotate(-45deg);
+            animation: floatUp linear infinite;
+            z-index: 1;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ddf100;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes floatUp {
+            0% {transform: translateY(0) rotate(-45deg); opacity: 1;}
+            100% {transform: translateY(-600px) rotate(-45deg); opacity: 0;}
         }
     </style>
 </head>
@@ -76,12 +132,19 @@
     <!-- Video Section -->
     <div id="video-section">
         <video id="myVideo" width="500" controls>
-            <source src="happy.mp4" type="video/mp4">
+            <source src="Happy.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
         </video>
-        <br>
-        <button onclick="showCard()">Open the Letter</button>
     </div>
+
+    <!-- Open Letter Button -->
+    <button id="openLetterBtn" onclick="showCard()">Open the Letter</button>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="Lighters.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <!-- Card Section -->
     <div id="card-section">
@@ -99,16 +162,41 @@
     </div>
 
     <script>
-        function showCard() {
-            // Dừng video nếu đang phát
-            var video = document.getElementById('myVideo');
-            if (!video.paused) {
-                video.pause();
-            }
+        const video = document.getElementById('myVideo');
+        const card = document.getElementById('card-section');
+        const videoSection = document.getElementById('video-section');
+        const openBtn = document.getElementById('openLetterBtn');
+        const bgMusic = document.getElementById('bgMusic');
 
-            // Ẩn video, hiển thị thiệp
-            document.getElementById('video-section').style.display = 'none';
-            document.getElementById('card-section').style.display = 'block';
+        // Khi video kết thúc, ẩn video và hiện nút "Open the Letter"
+        video.addEventListener('ended', () => {
+            videoSection.style.display = 'none';
+            openBtn.style.display = 'inline-block';
+        });
+
+        // Khi bấm nút, hiển thị thiệp và bật nhạc nền + tạo trái tim
+        function showCard() {
+            openBtn.style.display = 'none';
+            card.style.display = 'block';
+            bgMusic.play();
+
+            // Tạo trái tim liên tục
+            setInterval(() => {
+                createHeart();
+            }, 300);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.width = heart.style.height = (10 + Math.random() * 20) + 'px';
+            document.body.appendChild(heart);
+
+            // Xóa trái tim sau khi bay lên
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
         }
     </script>
 
