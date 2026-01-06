@@ -1,200 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Hello Kitty Birthday 🎂</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ffffff, #ffd6e8, #ffeef5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            flex-direction: column;
-            overflow: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello Kitty Birthday 🎂</title>
 
-        /* Hello Kitty background icons */
-        .kitty-bg {
-            position: absolute;
-            font-size: 40px;
-            opacity: 0.2;
-            animation: floatKitty 12s linear infinite;
-        }
+<style>
+/* ===== RESET ===== */
+* {
+    box-sizing: border-box;
+}
 
-        @keyframes floatKitty {
-            from { transform: translateY(100vh); }
-            to { transform: translateY(-120px); }
-        }
+/* ===== BODY ===== */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffffff, #ffd6e8, #ffeef5);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
 
-        #image-section, #card-section, #openLetterBtn {
-            text-align: center;
-            z-index: 2;
-        }
+/* ===== CONTAINER ===== */
+.container {
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
 
-        #image-section img {
-            width: 320px;
-            border-radius: 25px;
-            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
-            animation: fadeIn 1s ease-in-out;
-        }
+/* ===== IMAGE ===== */
+#image-section img {
+    width: 100%;
+    border-radius: 25px;
+    box-shadow: 0 12px 30px rgba(255,105,180,0.4);
+    animation: fadeIn 1s ease-in-out;
+}
 
-        #card-section {
-            display: none;
-            background-color: #ffffff;
-            border-radius: 25px;
-            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
-            padding: 40px;
-            max-width: 520px;
-            animation: fadeIn 1s ease-in-out;
-        }
+/* ===== BUTTON ===== */
+button {
+    display: none;
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 16px;
+    background-color: #ff69b4;
+    color: white;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: 0.3s;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
+button:hover {
+    background-color: #ff1493;
+    transform: scale(1.05);
+}
 
-        h1 {
-            color: #ff69b4;
-        }
+/* ===== CARD ===== */
+#card-section {
+    display: none;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 12px 30px rgba(255,105,180,0.35);
+    padding: 30px;
+    animation: fadeIn 0.8s ease;
+}
 
-        p {
-            font-size: 18px;
-            color: #444;
-        }
+h1 {
+    color: #ff69b4;
+    margin-bottom: 10px;
+}
 
-        .highlight {
-            color: #ff1493;
-            font-weight: bold;
-        }
+p {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.6;
+}
 
-        button {
-            display: none;
-            padding: 14px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 14px;
-            background-color: #ff69b4;
-            color: white;
-            cursor: pointer;
-            margin-top: 25px;
-            transition: 0.3s;
-        }
+.highlight {
+    color: #ff1493;
+    font-weight: bold;
+}
 
-        button:hover {
-            background-color: #ff1493;
-            transform: scale(1.05);
-        }
+/* ===== HELLO KITTY FLOAT ===== */
+.kitty {
+    position: absolute;
+    font-size: 32px;
+    opacity: 0.25;
+    animation: floatUp 8s linear infinite;
+    z-index: 1;
+}
 
-        /* Hearts */
-        .heart {
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            background-color: #ff69b4;
-            transform: rotate(-45deg);
-            animation: floatUp 4s linear infinite;
-            opacity: 0.8;
-        }
+@keyframes floatUp {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-120px); }
+}
 
-        .heart::before,
-        .heart::after {
-            content: '';
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            background-color: #ff69b4;
-            border-radius: 50%;
-        }
+/* ===== HEART ===== */
+.heart {
+    position: absolute;
+    font-size: 24px;
+    animation: heartUp 4s linear infinite;
+}
 
-        .heart::before { top: -9px; left: 0; }
-        .heart::after { left: 9px; top: 0; }
+@keyframes heartUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-500px); opacity: 0; }
+}
 
-        @keyframes floatUp {
-            from { transform: translateY(0) rotate(-45deg); opacity: 1; }
-            to { transform: translateY(-600px) rotate(-45deg); opacity: 0; }
-        }
-    </style>
+/* ===== FADE ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Hello Kitty floating icons -->
-    <script>
-        for (let i = 0; i < 15; i++) {
-            const kitty = document.createElement('div');
-            kitty.className = 'kitty-bg';
-            kitty.innerText = '🎀🐱';
-            kitty.style.left = Math.random() * 100 + 'vw';
-            kitty.style.animationDuration = (8 + Math.random() * 6) + 's';
-            document.body.appendChild(kitty);
-        }
-    </script>
+<!-- FLOATING HELLO KITTY -->
+<script>
+for (let i = 0; i < 15; i++) {
+    const kitty = document.createElement('div');
+    kitty.className = 'kitty';
+    kitty.innerText = '🎀🐱';
+    kitty.style.left = Math.random() * 100 + 'vw';
+    kitty.style.animationDuration = (6 + Math.random() * 6) + 's';
+    document.body.appendChild(kitty);
+}
+</script>
 
-    <!-- Image Section -->
+<div class="container">
+
+    <!-- IMAGE -->
     <div id="image-section">
         <img src="hinh.jpg" alt="Hello Kitty">
     </div>
 
-    <!-- Open Button -->
-    <button id="openLetterBtn" onclick="showCard()">🎁 Open Birthday Card</button>
+    <!-- BUTTON -->
+    <button id="openBtn" onclick="openCard()">🎁 Open Birthday Card</button>
 
-    <!-- Background Music -->
-    <audio id="bgMusic" loop>
-        <source src="bleedinglove2.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- Card Section -->
+    <!-- CARD -->
     <div id="card-section">
         <h1>🎂 Happy Birthday 🎂</h1>
 
-        <p>Dear <span class="highlight">Anh Thư & Meow </span>,</p>
+        <p>Dear <span class="highlight">Anh Thư & Meow</span>,</p>
 
-        <p>You are warmly invited to join us in celebrating a special birthday 🎉🎂</p>
+        <p>You are warmly invited to join us in celebrating a special birthday 🎉</p>
 
         <p><span class="highlight">⏰ Time:</span> 7:00 PM</p>
-        <p><span class="highlight">📅 Date:</span> Friday, 09/12/2026</p>
+        <p><span class="highlight">📅 Date:</span> Friday, 09/01/2026</p>
         <p><span class="highlight">📍 Location:</span> Say Garden</p>
-        <p><span class="highlight">🏡 Address:</span> 507 Dang Thuc Vinh Street, Dong Thanh Commune, Ho Chi Minh City, Vietnam</p>
+        <p><span class="highlight">🏡 Address:</span><br>
+        507 Dang Thuc Vinh Street,<br>
+        Dong Thanh Commune,<br>
+        Ho Chi Minh City, Vietnam</p>
 
-        <p>We would be delighted to have your presence and share this joyful moment together 💖</p>
+        <p>We would be delighted to have your presence 💖</p>
 
-        <div class="highlight">
-            Best regards,<br>
-            Anh Thư & Meow
-        </div>
+        <p class="highlight">Best regards,<br>Anh Thư & Meow</p>
     </div>
 
-    <script>
-        const openBtn = document.getElementById('openLetterBtn');
-        const card = document.getElementById('card-section');
-        const imgSection = document.getElementById('image-section');
-        const bgMusic = document.getElementById('bgMusic');
+    <!-- MUSIC -->
+    <audio id="music" loop>
+        <source src="bleedinglove2.mp3" type="audio/mpeg">
+    </audio>
 
-        // Sau 5 giây hiện nút mở thư
-        setTimeout(() => {
-            openBtn.style.display = 'inline-block';
-        }, 3000);
+</div>
 
-        function showCard() {
-            imgSection.style.display = 'none';
-            openBtn.style.display = 'none';
-            card.style.display = 'block';
-            bgMusic.play();
+<script>
+const openBtn = document.getElementById('openBtn');
+const imgSection = document.getElementById('image-section');
+const card = document.getElementById('card-section');
+const music = document.getElementById('music');
 
-            setInterval(createHeart, 250);
-        }
+/* Show button after 3s */
+setTimeout(() => {
+    openBtn.style.display = 'block';
+}, 3000);
 
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.style.left = Math.random() * window.innerWidth + 'px';
-            document.body.appendChild(heart);
+function openCard() {
+    imgSection.style.display = 'none';
+    openBtn.style.display = 'none';
+    card.style.display = 'block';
+    music.play();
 
-            setTimeout(() => heart.remove(), 4000);
-        }
-    </script>
+    setInterval(createHeart, 300);
+}
+
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerText = '💗';
+    heart.style.left = Math.random() * 100 + 'vw';
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 4000);
+}
+</script>
 
 </body>
 </html>
