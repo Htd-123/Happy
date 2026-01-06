@@ -2,201 +2,197 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Happy 3rd Anniversary</title>
+    <title>Hello Kitty Birthday 🎂</title>
     <style>
         body {
-        font-family: 'Arial', sans-serif;
-        background: linear-gradient(135deg, #583766, #3d777c, #fef4e4);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        flex-direction: column;
-        overflow: hidden; /* Để trái tim không tràn ra ngoài */
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffffff, #ffd6e8, #ffeef5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            overflow: hidden;
         }
 
-        #video-section, #card-section, #openLetterBtn {
+        /* Hello Kitty background icons */
+        .kitty-bg {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.2;
+            animation: floatKitty 12s linear infinite;
+        }
+
+        @keyframes floatKitty {
+            from { transform: translateY(100vh); }
+            to { transform: translateY(-120px); }
+        }
+
+        #image-section, #card-section, #openLetterBtn {
             text-align: center;
+            z-index: 2;
+        }
+
+        #image-section img {
+            width: 320px;
+            border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
+            animation: fadeIn 1s ease-in-out;
         }
 
         #card-section {
             display: none;
-            background-color: #fff0f5;
-            border-radius: 20px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            background-color: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
             padding: 40px;
-            max-width: 500px;
+            max-width: 520px;
             animation: fadeIn 1s ease-in-out;
-            position: relative;
-            z-index: 2;
         }
 
         @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        #card-section h1 {
-            color: #9ac7e5;
-            margin-bottom: 20px;
+        h1 {
+            color: #ff69b4;
         }
 
-        #card-section p {
+        p {
             font-size: 18px;
-            margin: 10px 0;
-            color: #333;
+            color: #444;
         }
 
         .highlight {
+            color: #ff1493;
             font-weight: bold;
-            color: #ff4500;
-        }
-
-        .footer {
-            margin-top: 30px;
-            font-style: italic;
-            color: #555;
         }
 
         button {
-            padding: 12px 25px;
+            display: none;
+            padding: 14px 30px;
             font-size: 18px;
             border: none;
-            border-radius: 10px;
-            background-color: #0fcce1;
+            border-radius: 14px;
+            background-color: #ff69b4;
             color: white;
             cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.3s;
-            z-index: 2;
-            position: relative;
+            margin-top: 25px;
+            transition: 0.3s;
         }
 
         button:hover {
-            background-color: #2e899e;
+            background-color: #ff1493;
+            transform: scale(1.05);
         }
 
-        video {
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            max-width: 100%;
-        }
-
-        #openLetterBtn {
-            display: none;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        /* Trái tim */
+        /* Hearts */
         .heart {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: #ddf100;
+            width: 18px;
+            height: 18px;
+            background-color: #ff69b4;
             transform: rotate(-45deg);
-            animation: floatUp linear infinite;
-            z-index: 1;
+            animation: floatUp 4s linear infinite;
+            opacity: 0.8;
         }
 
         .heart::before,
         .heart::after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: #ddf100;
+            width: 18px;
+            height: 18px;
+            background-color: #ff69b4;
             border-radius: 50%;
         }
 
-        .heart::before {
-            top: -10px;
-            left: 0;
-        }
-
-        .heart::after {
-            left: 10px;
-            top: 0;
-        }
+        .heart::before { top: -9px; left: 0; }
+        .heart::after { left: 9px; top: 0; }
 
         @keyframes floatUp {
-            0% {transform: translateY(0) rotate(-45deg); opacity: 1;}
-            100% {transform: translateY(-600px) rotate(-45deg); opacity: 0;}
+            from { transform: translateY(0) rotate(-45deg); opacity: 1; }
+            to { transform: translateY(-600px) rotate(-45deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Video Section -->
-    <div id="video-section">
-        <video id="myVideo" width="500" controls>
-            <source src="happy.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
+    <!-- Hello Kitty floating icons -->
+    <script>
+        for (let i = 0; i < 15; i++) {
+            const kitty = document.createElement('div');
+            kitty.className = 'kitty-bg';
+            kitty.innerText = '🎀🐱';
+            kitty.style.left = Math.random() * 100 + 'vw';
+            kitty.style.animationDuration = (8 + Math.random() * 6) + 's';
+            document.body.appendChild(kitty);
+        }
+    </script>
+
+    <!-- Image Section -->
+    <div id="image-section">
+        <img src="hinh.jpg" alt="Hello Kitty">
     </div>
 
-    <!-- Open Letter Button -->
-    <button id="openLetterBtn" onclick="showCard()">Open the Letter</button>
+    <!-- Open Button -->
+    <button id="openLetterBtn" onclick="showCard()">🎁 Open Birthday Card</button>
 
     <!-- Background Music -->
     <audio id="bgMusic" loop>
-        <source src="Lighters.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
+        <source src="bleedinglove2.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Card Section -->
     <div id="card-section">
-        <h1>🎉 Happy 3rd Anniversary! 🎉</h1>
-        <p>Dear <span class="highlight">Baby Uyên</span>,</p>
-        <p>We are celebrating <span class="highlight">3 wonderful years</span> together!</p>
-        <p><span class="highlight">Date:</span> 24/12, 2025</p>
-        <p><span class="highlight">Time:</span> 7:00 PM</p>
-        <p><span class="highlight">Location:</span> King Beef Steak House</p>
-        <p>Looking forward to creating more beautiful memories with you ❤️</p>
-        <div class="footer">
-            With love, <br>
-            <span class="highlight">Huynh Thanh Danh</span>
+        <h1>🎂 Happy Birthday 🎂</h1>
+
+        <p>Dear <span class="highlight">Anh Thư & Meow & David </span>,</p>
+
+        <p>You are warmly invited to join us in celebrating a special birthday 🎉🎂</p>
+
+        <p><span class="highlight">⏰ Time:</span> 7:00 PM</p>
+        <p><span class="highlight">📅 Date:</span> Friday, 09/12/2026</p>
+        <p><span class="highlight">📍 Location:</span> Say Garden</p>
+        <p><span class="highlight">🏡 Address:</span> 507 Đặng Thúc Vịnh, xã Đông Thạnh</p>
+
+        <p>We would be delighted to have your presence and share this joyful moment together 💖</p>
+
+        <div class="highlight">
+            Best regards,<br>
+            Huynh Thanh Danh
         </div>
     </div>
 
     <script>
-        const video = document.getElementById('myVideo');
-        const card = document.getElementById('card-section');
-        const videoSection = document.getElementById('video-section');
         const openBtn = document.getElementById('openLetterBtn');
+        const card = document.getElementById('card-section');
+        const imgSection = document.getElementById('image-section');
         const bgMusic = document.getElementById('bgMusic');
 
-        // Khi video kết thúc, ẩn video và hiện nút "Open the Letter"
-        video.addEventListener('ended', () => {
-            videoSection.style.display = 'none';
+        // Sau 5 giây hiện nút mở thư
+        setTimeout(() => {
             openBtn.style.display = 'inline-block';
-        });
+        }, 3000);
 
-        // Khi bấm nút, hiển thị thiệp và bật nhạc nền + tạo trái tim
         function showCard() {
+            imgSection.style.display = 'none';
             openBtn.style.display = 'none';
             card.style.display = 'block';
             bgMusic.play();
 
-            // Tạo trái tim liên tục
-            setInterval(() => {
-                createHeart();
-            }, 300);
+            setInterval(createHeart, 250);
         }
 
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
             heart.style.left = Math.random() * window.innerWidth + 'px';
-            heart.style.width = heart.style.height = (10 + Math.random() * 20) + 'px';
             document.body.appendChild(heart);
 
-            // Xóa trái tim sau khi bay lên
-            setTimeout(() => {
-                heart.remove();
-            }, 4000);
+            setTimeout(() => heart.remove(), 4000);
         }
     </script>
 
